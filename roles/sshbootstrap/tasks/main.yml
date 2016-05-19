@@ -1,0 +1,15 @@
+---
+
+- name: INIT SWITCH LAB
+  template: src=switch_init.j2 dest=/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_init.conf
+  with_items: lab-switch
+
+- name: PUSH CONFIGURATION
+#  ntc_config_command:
+#    connection: telnet
+#    platform: ios
+  telnet_config_command:
+    commands_file: "/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_init.conf"
+    host: "{{ inventory_hostname }}"
+    password: "{{ password }}"
+  register: result

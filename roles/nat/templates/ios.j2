@@ -1,0 +1,7 @@
+{% for nat in nats %}
+ip nat inside source static {{ nat.InsideIp }} {{ nat.OutsideIp }}
+interface {{ nat.InsideIf }}
+ ip nat inside
+interface {{ nat.OutsideIf }}
+ ip nat outside
+{% endfor %}

@@ -1,0 +1,90 @@
+#!/usr/bin/env python
+
+'''
+brauche ich eigentlich nicht mehr, weil ich jetzt beim booten den ssh key generiere
+'''
+
+import os.path
+import telnetlib
+import sys
+
+def ConnectHandler(host, password):
+    telnet = telnetlib.Telnet(host)
+    telnet.read_until("Password:")
+    telnet.write(password)
+    return telnet
+
+def main():
+
+    module = AnsibleModule(
+        argument_spec=dict(
+            commands_file=dict(required=True),
+            host=dict(required=True),
+            password=dict(required=True, type='str'),
+        ),
+        required_together=(
+            ['host', 'password', 'commands_file'],
+        ),
+        supports_check_mode=False
+    )
+
+    commands_file = module.params['commands_file']
+    password = module.params['password']
+    host = module.params['host']
+
+    device = ConnectHandler(host=host,
+                            password=password)
+
+
+    try:
+        if commands_file:
+            if os.path.isfile(commands_file):
+                with open(commands_file, 'r') as f:
+                    output = device.write(f.readlines())
+    except:
+        module.fail_json(msg="Unable to locate: {}".format(commands_file))
+
+
+    telnet = telnetlib.Telnet(host)
+    telnet.read_until("Password:")
+    telnet.write(password)
+    telnet.write("\n")
+    result = telnet.read_eager()
+    print (result)
+
+    #    telnet.read_until(">")
+    telnet.write("ena")
+    telnet.write("\n")
+    result = telnet.read_eager()
+    print (result)
+
+    #    telnet.read_until("Password:")
+    telnet.write(password)
+    telnet.write("\n")
+    result = telnet.read_eager()
+    print (result)
+
+    #    telnet.read_until("#")
+    telnet.write("\n")
+    telnet.write("conf t\n")
+    telnet.write("\n")
+    telnet.write(content)
+    telnet.write("\n")
+    # telnet.read_until("(confi)#")
+    telnet.write("end\n")
+    result = telnet.read_eager()
+    print (result)
+
+    telnet.write("\n")
+    telnet.write("exit\n")
+    output = telnet.read_all()
+
+    results = {}
+    results['response'] = output
+
+    module.exit_json(changed=True, **results)
+
+
+from ansible.module_utils.basic import *
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,16 @@
+system {
+    host-name {{ hostname }}
+    name-server {
+        {{ primary_dns_server }};
+    }
+    ntp {
+        server {{ primary_ntp_server }};
+        server {{ secondary_ntp_server }};
+    }
+
+}
+protocols {
+    lldp {
+        interface all;
+    }
+}

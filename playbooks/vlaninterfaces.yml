@@ -1,0 +1,9 @@
+---
+
+- name: LAYER 3 INTERFACES SWITCH LAB
+  hosts: dl-cl-switch
+  connection: local
+  gather_facts: False
+
+  roles:
+    - vlanint

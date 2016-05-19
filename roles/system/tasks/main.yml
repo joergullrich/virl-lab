@@ -1,0 +1,9 @@
+---
+
+# system:
+#   anlegen von Hostnamen und Domain, damit der SSH Key generiert werden kann
+#
+#
+
+- name: generate system configs from templates
+  template: src={{os}}.j2 dest={{config_dir}}/{{inventory_hostname}}/system.conf

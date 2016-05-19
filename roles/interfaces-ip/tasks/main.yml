@@ -1,0 +1,4 @@
+---
+
+- name: generate ip interface configs from templates
+  template: src={{os}}.j2 dest={{config_dir}}/{{inventory_hostname}}/interfaces-ip.conf

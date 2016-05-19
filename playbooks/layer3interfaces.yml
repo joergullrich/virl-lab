@@ -1,0 +1,9 @@
+---
+
+- name: LAYER 3 INTERFACES SWITCH LAB
+  hosts: layer3
+  connection: local
+  gather_facts: False
+
+  roles:
+    - layer3

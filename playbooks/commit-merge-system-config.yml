@@ -1,0 +1,17 @@
+---
+- name: Merge system configuration
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Push system configuration with napalm
+    napalm_install_config:
+        hostname={{hostname}}
+        username={{username}}
+        dev_os={{os}}
+        password={{password}}
+        config_file={{config_dir}}/{{hostname}}/system.conf
+        commit_changes=True
+        replace_config=False
+        diff_file={{config_dir}}/{{hostname}}/system.diff

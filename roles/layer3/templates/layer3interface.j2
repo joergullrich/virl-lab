@@ -1,0 +1,7 @@
+{% for interface in interfaces %}
+default interfaces {{ interface.Layer3Interface }}
+interface {{ interface.Layer3Interface }}
+ no switchport
+ ip address {{ interface.IpAddress }} {{ interface.Mask }}
+!
+{% endfor %}

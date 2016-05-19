@@ -1,0 +1,9 @@
+---
+
+- name: Konfig bauen
+  gather_facts: False
+  connection: local
+  hosts: all
+
+  roles:
+    - hsrp_lab

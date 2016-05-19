@@ -1,0 +1,4 @@
+---
+
+- name: generate base configs from templates
+  template: src=../templates/{{os}}.j2 dest={{config_dir}}/{{ inventory_hostname }}/base.conf

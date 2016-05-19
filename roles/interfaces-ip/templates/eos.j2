@@ -1,0 +1,7 @@
+{% for iface in interfacesip %}
+interface {{ iface.name }}
+description {{ iface.description }}
+ip address {{iface.ip}}
+no switchport
+no shutdown
+{% endfor %}

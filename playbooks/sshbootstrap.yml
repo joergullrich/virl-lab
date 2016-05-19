@@ -1,0 +1,9 @@
+---
+
+- name: SETUP LAB
+  hosts: lab-switch
+  connection: local
+  gather_facts: False
+
+  roles:
+    - sshbootstrap

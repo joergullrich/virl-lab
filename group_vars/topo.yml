@@ -1,0 +1,86 @@
+---
+
+rtr4:
+[{u'neighbor_interface': u'Gig3/0', u'local_interface': u'Gig0/1', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig2/0', u'local_interface': u'Gig0/2', u'neighbor': u'switch6'}]
+
+switch1:
+[{u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig1/0', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig0/3', u'local_interface': u'Gig1/2', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig1/1', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig0/3', u'local_interface': u'Gig0/3', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig0/2', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig0/1', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig2/2', u'local_interface': u'Gig3/0', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig1/3', u'neighbor': u'rtr2'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig2/0', u'neighbor': u'rtr1'}]
+
+switch2:
+[{u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig0/1', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig0/3', u'local_interface': u'Gig0/3', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig0/2', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig1/2', u'local_interface': u'Gig1/2', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig1/1', u'local_interface': u'Gig1/1', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig1/0', u'local_interface': u'Gig1/0', u'neighbor': u'switch3'},
+ {u'neighbor_interface': u'Gig0/3', u'local_interface': u'Gig2/3', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig2/2', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig2/1', u'neighbor': u'switch5'}]
+
+switch3:
+[{u'neighbor_interface': u'Gig1/2', u'local_interface': u'Gig0/3', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig1/1', u'local_interface': u'Gig0/2', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig1/0', u'local_interface': u'Gig0/1', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig1/2', u'local_interface': u'Gig1/2', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig1/1', u'local_interface': u'Gig1/1', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig1/0', u'local_interface': u'Gig1/0', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig1/3', u'neighbor': u'rtr2'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig2/0', u'neighbor': u'rtr1'}]
+
+switch4:
+[{u'neighbor_interface': u'Gig2/1', u'local_interface': u'Gig0/1', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig2/2', u'local_interface': u'Gig0/2', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig2/3', u'local_interface': u'Gig0/3', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig3/0', u'local_interface': u'Gig2/2', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig1/1', u'local_interface': u'Gig1/1', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig1/0', u'local_interface': u'Gig1/0', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/0', u'local_interface': u'Gig0/0', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig1/2', u'local_interface': u'Gig1/2', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/0', u'local_interface': u'Gig0/0', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig0/3', u'local_interface': u'Gig2/1', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig1/3', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig2/0', u'neighbor': u'switch6'}]
+
+switch5:
+[{u'neighbor_interface': u'Gig3/0', u'local_interface': u'Gig2/2', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig2/1', u'local_interface': u'Gig0/1', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig2/2', u'local_interface': u'Gig0/2', u'neighbor': u'switch2'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig2/3', u'neighbor': u'rtr3'},
+ {u'neighbor_interface': u'Gig1/2', u'local_interface': u'Gig2/1', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig1/1', u'local_interface': u'Gig2/0', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig1/0', u'local_interface': u'Gig1/3', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig0/0', u'local_interface': u'Gig0/0', u'neighbor': u'switch6'},
+ {u'neighbor_interface': u'Gig0/1', u'local_interface': u'Gig3/0', u'neighbor': u'rtr4'}]
+
+switch6:
+[{u'neighbor_interface': u'Gig2/0', u'local_interface': u'Gig0/2', u'neighbor': u'switch4'},
+ {u'neighbor_interface': u'Gig2/1', u'local_interface': u'Gig0/3', u'neighbor': u'switch4'},
+ {u'neighbor_interface': u'Gig1/3', u'local_interface': u'Gig0/1', u'neighbor': u'switch4'},
+ {u'neighbor_interface': u'Gig0/0', u'local_interface': u'Gig0/0', u'neighbor': u'switch4'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig1/3', u'neighbor': u'rtr3'},
+ {u'neighbor_interface': u'Gig2/1', u'local_interface': u'Gig1/2', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig2/0', u'local_interface': u'Gig1/1', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/0', u'local_interface': u'Gig0/0', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig1/3', u'local_interface': u'Gig1/0', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig0/2', u'local_interface': u'Gig2/0', u'neighbor': u'rtr4'}]
+
+rtr1:
+[{u'neighbor_interface': u'Gig2/0', u'local_interface': u'Gig0/1', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig2/0', u'local_interface': u'Gig0/2', u'neighbor': u'switch3'}]
+
+rtr2:
+[{u'neighbor_interface': u'Gig1/3', u'local_interface': u'Gig0/1', u'neighbor': u'switch1'},
+ {u'neighbor_interface': u'Gig1/3', u'local_interface': u'Gig0/2', u'neighbor': u'switch3'}]
+
+rtr3:
+[{u'neighbor_interface': u'Gig2/3', u'local_interface': u'Gig0/1', u'neighbor': u'switch5'},
+ {u'neighbor_interface': u'Gig1/3', u'local_interface': u'Gig0/2', u'neighbor': u'switch6'}]

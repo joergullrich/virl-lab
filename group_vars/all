@@ -1,0 +1,5 @@
+---
+
+TEST_DIR: "./tests"
+
+config_dir: /home/jullrich/var/virl-lab/cfg

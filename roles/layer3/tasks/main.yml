@@ -1,0 +1,17 @@
+---
+
+- name: SETUP L3 INTERFACES
+  template: src=layer3interface.j2 dest=/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_interface.conf
+  with_items: layer3
+  register: result
+
+- name: PUSH INTERFACE CONFIGURATION
+  ntc_config_command:
+    connection: ssh
+    platform: cisco_ios
+    commands_file: "/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_interface.conf"
+    host: "{{ ansible_host }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    secret: "{{ secret }}"
+  register: result

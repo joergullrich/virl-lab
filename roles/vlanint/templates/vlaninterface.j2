@@ -1,0 +1,7 @@
+{% for interface in vlanint %}
+default interfaces vlan {{ interface.VlanInterface }}
+interface vlan {{ interface.VlanInterface }}
+ ip address {{ interface.IpAddress }} {{ interface.Mask }}
+ no shutdown
+!
+{% endfor %}

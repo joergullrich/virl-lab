@@ -1,0 +1,26 @@
+{% for interface in interfaces %}
+{% if interface.IfType == "L2" %}
+!default interface {{ interface.IfName }}{{ interface.IfNr }}
+!interface {{ interface.IfName }}{{ interface.IfNr }}
+! description {{ interface.Description }}
+! cdp enable
+! switchport
+! switchport mode access
+! no switchport mode dynamic
+! switchport access vlan {{ interface.VlanId }}
+! no shutdown
+!
+{% endif %}
+{% if interface.IfType == "L3" %}
+!default interface {{ interface.IfName }}{{ interface.IfNr }}
+interface {{ interface.IfName }}{{ interface.IfNr }}
+ shutdown
+ description {{ interface.Description }}
+ cdp enable
+! no switchport
+ ip address {{ interface.Ip }} {{ interface.Mask }}
+ no shutdown
+!
+{% endif %}
+{% endfor %}
+end

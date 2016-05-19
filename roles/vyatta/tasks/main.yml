@@ -1,0 +1,14 @@
+---
+
+- name: BUILD VYATTA CONFIGURATION
+  template: src=vyatta_template.j2 dest=/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}.conf
+  with_items: vyatta
+
+- name: PUSH CONFIGURATION
+  ntc_config_command:
+    connection: ssh
+    command: {{ vyatta_interface_command }}
+    host: {{ inventory_hostname }}
+    username: "{{ username }}"
+    password: "{{ password }}"
+  register: result

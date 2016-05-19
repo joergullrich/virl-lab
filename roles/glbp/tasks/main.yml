@@ -1,0 +1,4 @@
+---
+
+- name: generate glbp configs from templates
+  template: src={{os}}.j2 dest={{config_dir}}/{{inventory_hostname}}/glbp.conf

@@ -1,0 +1,13 @@
+{% for track in tracks %}
+ip sla {{ track.TrackId }}
+ icmp-echo {{ track.TunnelFAddress }} source-interface Tunnel{{ track.TrackId }}
+ frequency 30
+ip sla schedule {{ track.TrackId }} life forever start-time now
+!
+track {{ track.TrackId }} ip sla {{ track.TrackId }} reachability
+ delay down 35 up 35
+!
+track 10 list boolean or
+ object {{ track.TrackId }}
+!
+{% endfor %}

@@ -1,0 +1,38 @@
+---
+- name: Merge all configuration
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Push system configuration with napalm
+    napalm_install_config:
+        hostname={{hostname}}
+        username={{user}}
+        dev_os={{os}}
+        password={{passwd}}
+        config_file={{config_dir}}/{{hostname}}/system.conf
+        commit_changes=True
+        replace_config=False
+        diff_file={{config_dir}}/{{hostname}}/system.diff
+  - name: Push ip interface configuration with napalm
+    napalm_install_config:
+        hostname={{hostname}}
+        username={{user}}
+        dev_os={{os}}
+        password={{passwd}}
+        config_file={{config_dir}}/{{hostname}}/interfaces-ip.conf
+        commit_changes=True
+        replace_config=False
+        diff_file={{config_dir}}/{{hostname}}/interfaces-ip.diff
+  - name: Push bgp configuration with napalm
+    napalm_install_config:
+        hostname={{hostname}}
+        username={{user}}
+        dev_os={{os}}
+        password={{passwd}}
+        config_file={{config_dir}}/{{hostname}}/bgp.conf
+        commit_changes=True
+        replace_config=False
+        diff_file={{config_dir}}/{{hostname}}/bgp.diff
+

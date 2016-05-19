@@ -1,0 +1,8 @@
+---
+- name: Generate nat config
+  hosts: nat
+  gather_facts: no
+  connection: local
+
+  roles:
+  - nat

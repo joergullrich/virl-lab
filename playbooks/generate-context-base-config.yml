@@ -1,0 +1,12 @@
+---
+- name: Generate context base config
+  hosts: context
+  gather_facts: no
+  connection: local
+
+  pre_tasks:
+    - name: create candidate config directory
+      file: path={{config_dir}}/{{ inventory_hostname }} state=directory
+
+  roles:
+    - context

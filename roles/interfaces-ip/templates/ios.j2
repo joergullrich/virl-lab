@@ -1,0 +1,9 @@
+{% for interface in interfaces %}
+! default interface "{{ interface.Layer3Interface }}.{{ interface.VlanId }}"
+interface "{{ interface.Layer3Interface }}.{{ interface.VlanId }}"
+ encapsulation dot1q {{ interface.VlanId }} 
+ ip addr {{ interface.IpAddress }} {{ interface.Mask }}
+ no shut
+!
+{% endfor %}
+end

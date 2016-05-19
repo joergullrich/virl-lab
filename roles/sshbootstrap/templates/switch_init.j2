@@ -1,0 +1,7 @@
+user cisco priv 15 password cisco
+ip domain-name virl.lab
+
+aaa new-model
+aaa authentication login default local
+
+crypto key generate rsa modulus 2048

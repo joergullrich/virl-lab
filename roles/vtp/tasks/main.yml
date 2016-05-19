@@ -1,0 +1,17 @@
+---
+
+- name: SETUP VTP
+  template: src=vtp.j2 dest=/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_vtp.conf
+  with_items: lab-switch
+  register: result
+
+- name: PUSH VTP CONFIGURATION
+  ntc_config_command:
+    connection: ssh
+    platform: cisco_ios
+    commands_file: "/home/jullrich/var/virl-lab/cfg/{{ inventory_hostname }}_vtp.conf"
+    host: "{{ ansible_host }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    secret: "{{ secret }}"
+  register: result

@@ -1,0 +1,19 @@
+---
+
+- name: Merge ipsec configuration
+  hosts: nat
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Push nat configuration with napalm
+    napalm_install_config:
+      hostname={{inventory_hostname}}
+      username={{username}}
+      dev_os="ios"
+      password={{password}}
+      config_file={{config_dir}}/{{inventory_hostname}}/nat.conf
+      commit_changes=true
+      replace_config=true
+      get_diffs=True
+      diff_file={{config_dir}}/{{inventory_hostname}}/nat.diff

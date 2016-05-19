@@ -1,0 +1,30 @@
+---
+
+- name: get cdp
+  hosts: all
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+    - name: get cdp
+      ntc_show_command:
+        connection: ssh
+        platform: cisco_ios
+        command: "show cdp neighbors"
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        secret: "{{ secret }}"
+      register: neighbors
+      tags: neighbors
+
+    - name: save cdp
+      local_action: copy content="{{neighbors.response}}" dest="{{config_dir}}/{{inventory_hostname}}/cdp.log"
+
+    - debug: var=neighbors.response
+
+    # - name: update description
+    #   template: src=roles/interfaces/templates/{{os}}_interfaces_description.j2 dest={{config_dir}}/{{inventory_hostname}}/interfaces_description.conf
+    #   # copy content="{{neighbors}}" dest={{config_dir}}/{{inventory_hostname}}/cdp.log
+    #   with_items: neighbors.response

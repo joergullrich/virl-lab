@@ -1,0 +1,9 @@
+---
+- name: Generate init config
+  hosts: all
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: create config directory
+      file: path={{config_dir}}/{{ inventory_hostname}} state=directory

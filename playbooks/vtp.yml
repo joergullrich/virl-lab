@@ -1,0 +1,9 @@
+---
+
+- name: VTP SWITCH LAB
+  hosts: lab-switch
+  connection: local
+  gather_facts: False
+
+  roles:
+    - vtp

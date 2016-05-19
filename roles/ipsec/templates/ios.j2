@@ -1,0 +1,26 @@
+{% for tunnel in tunnels %}
+crypto isakmp policy 5
+ encr aes 128
+ authentication pre-share
+ group 2
+crypto isakmp key 0 {{ tunnel.TunnelPsk }} address {{ tunnel.TunnelDestination }}
+crypto isakmp keepalive 30 periodic
+!
+!
+crypto ipsec transform-set PROF01-set esp-aes 128 esp-sha-hmac
+!
+!
+crypto ipsec profile PROF01
+ set transform-set PROF01-set
+!
+!##### Tunnel Interface settings #####
+!
+interface Tunnel{{ tunnel.Id }}
+ description IPSEC zum xyz VPN Gateway 2
+ ip address {{ tunnel.TunnelNAddress }} {{ tunnel.TunnelMask }}
+ tunnel source {{ tunnel.TunnelSource}}
+ tunnel mode ipsec ipv4
+ tunnel destination {{ tunnel.TunnelDestination }}
+ tunnel protection ipsec profile PROF01
+!
+{% endfor %}

@@ -1,0 +1,13 @@
+{% for glbp in glbps %}
+interface {{ glbp.GlbpInterface }}
+ glbp {{ glbp.GlbpGroup }} ip {{ glbp.GlbpIp }}
+ glbp {{ glbp.GlbpGroup }} preempt
+ glbp {{ glbp.GlbpGroup }} priority {{ glbp.GlbpPrio }}
+ glbp {{ glbp.GlbpGroup }} {{ glbp.GlbpWeigthting}}
+ no glbp {{ glbp.GlbpGroup }} load-balancing
+ glbp {{ glbp.GlbpGroup }} {{ glbp.GlbpAuth }}
+ glbp {{ glbp.GlbpGroup }} weighting track {{ glbp.GlbpTrack }} decrement {{ glbp.GlbpDec }}
+!
+!
+{% endfor %}
+!

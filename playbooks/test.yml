@@ -1,0 +1,23 @@
+---
+
+- name: test napalm on ios
+  hosts: rtr
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: generate .diff file
+      napalm_install_config:
+        # platform: cisco_ios_ssh
+        hostname: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        # secret: "{{ secret }}"
+        # dev_os: "{{ dev_os }}"
+        dev_os: "ios"
+        config_file: "{{config_dir}}/{{ inventory_hostname}}/initial.conf"
+        commit_changes: True
+        replace_config: True
+        diff_file: "{{config_dir}}/{{ inventory_hostname}}/initial.diff"
+        # filter: 'environment'
+        # optional_args: {'auto_rollback_on_error': False}

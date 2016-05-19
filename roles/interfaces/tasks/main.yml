@@ -1,0 +1,4 @@
+---
+
+- name: generate interface configs from templates
+  template: src={{os}}_{{sub_os}}.j2 dest={{config_dir}}/{{inventory_hostname}}/interfaces.conf

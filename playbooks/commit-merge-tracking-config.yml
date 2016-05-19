@@ -1,0 +1,19 @@
+---
+
+- name: Merge ipsec configuration
+  hosts: rtr
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Push ipsec configuration with napalm
+    napalm_install_config:
+      hostname={{inventory_hostname}}
+      username={{username}}
+      dev_os="ios"
+      password={{password}}
+      config_file={{config_dir}}/{{inventory_hostname}}/tracking.conf
+      commit_changes=true
+      replace_config=true
+      get_diffs=True
+      diff_file={{config_dir}}/{{inventory_hostname}}/tracking.diff

@@ -1,0 +1,7 @@
+{% for interface in interfaces %}
+interface {{ interface.name }}
+ nameif {{ interface.nameif }}
+ security-level {{ interface.sl }}
+ ip address {{ interface.ip }} {{ interface.mask }} standby {{ interface.standby }}
+!
+{% endfor %}

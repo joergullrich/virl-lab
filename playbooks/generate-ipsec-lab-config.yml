@@ -1,0 +1,32 @@
+---
+
+- name: Generate interface configs
+  hosts: rtr
+  gather_facts: no
+  connection: local
+
+  # pre_tasks:
+  #   #- name: remove potentially existing previous candidate config directories
+  #   #  file: path={{config_dir}}/{{ inventory_hostname}} state=absent
+  #   - name: create candidate config directory
+  #     file: path={{config_dir}}/{{ inventory_hostname}} state=directory
+
+  roles:
+    - interfaces-ip
+
+- name: Generate ipsec tunnels
+  hosts: tunnel
+  gather_facts: no
+  connection: local
+
+  roles:
+    - ipsec
+
+- name: Generate glbp configs
+  hosts: glbp
+  gather_facts: no
+  connection: local
+
+  roles:
+    - glbp
+    - tracking

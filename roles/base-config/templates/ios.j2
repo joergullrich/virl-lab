@@ -1,0 +1,43 @@
+! service password-encryption
+username {{ username }} privilege 15 password {{ password }}
+!
+{% for interface in interfaces %}
+! default interfaces {{ interface.Layer3Interface }}
+interface {{ interface.Layer3Interface }}
+{% if VrfForwarding is defined %}
+ vrf forwarding {{ VrfForwarding }}
+{% endif %}
+ ip address {{ interface.IpAddress }} {{ interface.Mask }}
+ negotiation auto
+!
+{% endfor %}
+!##### Monitoring #####
+!
+ip access-list standard Monitoring
+{% for MgmtIpAddress in MgmtIpAddresses %}
+ permit {{ MgmtIpAddress }}
+{% endfor %}
+!
+snmp-server community {{ SecretCommunity }} RW Monitoring
+{% for interface in interfaces %}
+snmp-server trap-source {{ interface.Layer3Interface }}
+{% endfor %}
+{% for interface in interfaces %}
+snmp-server source-interface informs {{ interface.Layer3Interface }}
+{% endfor %}
+snmp-server enable traps
+{% for MgmtIpAddress in MgmtIpAddresses %}
+snmp-server host {{ MgmtIpAddress }} informs version 2c {{ SecretTrapCommunity }}
+{% endfor %}
+!
+!##### Management Access #####
+!
+ip access-list standard Management
+{% for MgmtIpAddress in MgmtIpAddresses %}
+ permit {{ MgmtIpAddress }}
+{% endfor %}
+!
+line vty 0 15
+ access-class Management
+ transport input ssh
+!

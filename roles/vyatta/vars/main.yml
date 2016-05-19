@@ -1,0 +1,7 @@
+---
+
+vyatta:
+- { interface: eth0, ip_address: 172.16.1.1/24, description: "interface eth0" }
+- { interface: eth1, ip_address: 172.17.1.1/24, description: "interface eth1" }
+- { interface: eth2, ip_address: 172.18.1.1/24, description: "interface eth2" }
+- { interface: eth3, ip_address: 172.19.1.1/24, description: "interface eth3" }

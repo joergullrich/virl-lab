@@ -1,0 +1,12 @@
+{% for portchannel in portchannels %}
+interface Port-channel{{ portchannel.PcNr }}.{{ portchannel.VlanId }}
+ description {{ portchannel.Description }}
+ vlan {{ portchannel.VlanId }}
+!
+{% endfor %}
+!
+context {{ ContextName }}
+{% for portchannel in portchannels %}
+ allocate-interface Port-channel{{ portchannel.PcNr }}.{{ portchannel.VlanId }}
+{% endfor %}
+config-url disk0:/{{ ContextName }}.cfg

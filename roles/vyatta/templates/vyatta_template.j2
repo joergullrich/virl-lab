@@ -1,0 +1,6 @@
+configure
+{% for vyatta_int in vyatta %}
+set interfaces ethernet {{ vyatta_int.interface }} description {{ vyatta_int.description }}
+set interfaces ethernet {{ vyatta_int.interface }} address {{ vyatta_int.ip_address }}
+{% endfor %}
+commit

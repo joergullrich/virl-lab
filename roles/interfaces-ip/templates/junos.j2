@@ -1,0 +1,12 @@
+{% for iface in interfacesip %}
+interfaces {
+    {{ iface.name }} {
+        description {{ iface.description }};
+        unit 0 {
+          	family inet {
+                address {{iface.ip}};
+          	}
+        }
+    }
+}
+{% endfor %}

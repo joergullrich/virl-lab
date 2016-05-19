@@ -1,0 +1,24 @@
+[switch]
+switch1
+switch2
+switch3
+
+[rtr]
+rtr1
+rtr2
+rtr3
+rtr4
+
+[switch:vars]
+os=ios
+# platform=cisco_ios
+username=virl
+password=virl
+secret=virl
+
+[rtr:vars]
+os=ios
+# platform=cisco_ios
+username=virl
+password=virl
+secret=virl

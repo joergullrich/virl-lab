@@ -1,0 +1,24 @@
+---
+
+interfaces:
+  - IfIndex: 1
+    IfType: L3
+    IfName: GigabitEthernet
+    IfNr: 0/1
+    Description: "switch5.virl.lab Gig 3/0"
+    Ip: "10.100.7.1"
+    Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 2
+    IfType: L3
+    IfName: GigabitEthernet
+    IfNr: 0/2
+    Description: "switch6.virl.lab Gig 2/0"
+    Ip: "10.100.8.1"
+    Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'

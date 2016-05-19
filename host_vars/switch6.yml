@@ -1,0 +1,106 @@
+---
+
+interfaces:
+  - IfIndex: 1
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 0/1
+    Description: "switch4.virl.info Gig 1/3"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 2
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 0/2
+    Description: "switch4.virl.info Gig 2/0"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 3
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 0/3
+    Description: "switch4.virl.info Gig 2/1"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 4
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 1/0
+    Description: "switch5.virl.lab Gig 1/3"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 5
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 1/1
+    Description: "switch5.virl.lab Gig 2/0"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 6
+    IfType: L2
+    IfName: GigabitEthernet
+    IfNr: 1/2
+    Description: "switch5.virl.lab Gig 2/1"
+    VlanMode: access
+    VlanId: 10
+    #Ip: "10.138.33.20"
+    #Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 7
+    IfType: L3
+    IfName: GigabitEthernet
+    IfNr: 1/3
+    Description: "rtr3.virl.info Gig 0/2"
+    #VlanMode: access
+    #VlanId: 10
+    Ip: "10.100.6.254"
+    Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'
+
+  - IfIndex: 8
+    IfType: L3
+    IfName: GigabitEthernet
+    IfNr: 2/0
+    Description: "rtr4.virl.info Gig 0/2"
+    #VlanMode: access
+    #VlanId: 10
+    Ip: "10.100.8.254"
+    Mask: "255.255.255.0"
+    #Standby: "10.138.33.21"
+    #Routes:
+    #  - '1.1.1.1 255.255.255.255 10.138.33.1'

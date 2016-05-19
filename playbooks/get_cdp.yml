@@ -1,0 +1,21 @@
+---
+
+- name: get cdp
+  hosts: all
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+    - name: get ...
+      ntc_show_command:
+        connection: ssh
+        platform: cisco_ios
+        command: "show cdp"
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        secret: "{{ secret }}"
+      register: result
+
+    - debug: var=result
