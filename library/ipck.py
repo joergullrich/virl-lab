@@ -18,11 +18,31 @@ limitations under the License.
 '''
 
 '''
+module:
+description:
  pruefen, ob zwie IP Adressen im gleichen Netz sind
  also die Interface Adresse und der GW
-
+notes:
  Aufbau Quellfile
  {{ ContextName }};{{ interface.Nameif }};"{{ interface.Ip }}";"{{ route.NextHop }}";"{{ interface.Mask }}";"{{ route.Network }}";
+author: Joerg Ullrich
+version: 0.1
+requirements:
+options:
+
+'''
+
+EXAMPLES = '''
+
+- ipck:
+    logfile: "{{ sroute }}"
+'''
+
+RETURN = '''
+changed:
+    description:
+    returned: always
+    type: bool
 
 '''
 
@@ -30,45 +50,64 @@ import sys
 import re
 import ipcalc
 
-f =  sys.argv[1]
-CONTEXT = r'(\w+)'
-INTF = r'(\w+)'
-IPv4 = r'(\d+\.\d+\.\d+\.\d+)'
-NETWORK = r'(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)'
-DELIMITER = r';'
-LINE = (CONTEXT + DELIMITER +
-        INTF + DELIMITER  +
-        IPv4 + DELIMITER +
-        IPv4 + DELIMITER +
-        IPv4 + DELIMITER +
-        NETWORK)
 
 
 def netmask_to_cidr(netmask):
     return sum([bin(int(x)).count('1') for x in netmask.split('.')])
 
-with open ( f, 'r') as src_file:
-    lines = src_file.readlines()
+def main():
 
-LineNr = 1
+    CONTEXT = r'(\w+)'
+    INTF = r'(\w+)'
+    IPv4 = r'(\d+\.\d+\.\d+\.\d+)'
+    NETWORK = r'(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)'
+    DELIMITER = r';'
+    LINE = (CONTEXT + DELIMITER +
+            INTF + DELIMITER  +
+            IPv4 + DELIMITER +
+            IPv4 + DELIMITER +
+            IPv4 + DELIMITER +
+            NETWORK)
+    CurrentLine = 0
+    LastErrorLine = 0
+    changed = True
 
-for line in lines:
-    matched = re.match(LINE, line)
 
-    context, intf, ip1, ip2, mask, network = ( matched.groups())
-    cidr = netmask_to_cidr(mask)
-    ipaddr1 = ip1 + "/" + repr(cidr)
-    ipaddr2 = ip2 + "/" + repr(cidr)
+    module = AnsibleModule(
+        argument_spec=dict(
+            logfile=dict(required=False)
+        )
+    )
 
-    network1 = ipcalc.Network(ipaddr1)
-    network2 = ipcalc.Network(ipaddr2)
-    if network1.network() == network2.network():
-        # print "{} gleich {}".format(network1.network(), network2.network())
-        error = 0
-    else:
-        # print "{} nicht gleich {}".format(network1.network(), network2.network())
-        error = LineNr
+    logfile = module.params['logfile']
 
-    LineNr += 1
+    facts = {}
+    try:
+        with open ( logfile, 'r') as src_file:
+            lines = src_file.readlines()
+    except:
+        module.fail_json(msg="cannot open ...")
 
-print "Fehler in Zeile {}".format(LineNr)
+    for line in lines:
+
+        CurrentLine += 1
+        matched = re.match(LINE, line)
+        context, intf, ip1, ip2, mask, network = ( matched.groups())
+
+        cidr = netmask_to_cidr(mask)
+        ipaddr1 = ip1 + "/" + repr(cidr)
+        ipaddr2 = ip2 + "/" + repr(cidr)
+
+        network1 = ipcalc.Network(ipaddr1)
+        network2 = ipcalc.Network(ipaddr2)
+        if repr(network1.network()) != repr(network2.network()):
+            messsage = "Line {}: INTF {} und GW {} nicht im gleichen Netz".format(CurrentLine, network1.network(), network2.network())
+            module.fail_json(msg=messsage)
+
+    messsage = "{} Zeile(n) getestet".format(CurrentLine)
+    module.exit_json(changed=changed, msg=messsage, ansible_facts=facts)
+
+from ansible.module_utils.basic import *
+
+if __name__ == '__main__':
+    main()
