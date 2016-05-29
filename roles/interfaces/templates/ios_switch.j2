@@ -1,7 +1,7 @@
 {% for interface in interfaces %}
-{% if interface.IfType == "L2" %}
-default interface {{ interface.IfName }}{{ interface.IfNr }}
-interface {{ interface.IfName }}{{ interface.IfNr }}
+{% if interface.IfLayer == "L2" %}
+default interface {{ interface.IfType }}{{ interface.IfNr }}
+interface {{ interface.IfType }}{{ interface.IfNr }}
  shutdown
  description {{ interface.Description }}
  cdp enable
@@ -9,17 +9,23 @@ interface {{ interface.IfName }}{{ interface.IfNr }}
  switchport mode access
  no switchport mode dynamic
  switchport access vlan {{ interface.VlanId }}
+ no negotiation auto
+ speed auto
+ duplex auto
  no shutdown
 !
 {% endif %}
-{% if interface.IfType == "L3" %}
-default interface {{ interface.IfName }}{{ interface.IfNr }}
-interface {{ interface.IfName }}{{ interface.IfNr }}
+{% if interface.IfLayer == "L3" %}
+default interface {{ interface.IfType }}{{ interface.IfNr }}
+interface {{ interface.IfType }}{{ interface.IfNr }}
  shutdown
  description {{ interface.Description }}
  cdp enable
  no switchport
  ip address {{ interface.Ip }} {{ interface.Mask }}
+ no negotiation auto
+ speed auto
+ duplex auto
  no shutdown
 !
 {% endif %}
